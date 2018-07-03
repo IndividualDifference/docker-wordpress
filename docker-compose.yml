@@ -3,20 +3,21 @@ services:
   db:
     image: mariadb:10.3
     environment:
-      MYSQL_ROOT_PASSWORD: secretsecret
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wp
-      MYSQL_PASSWORD: secret
+      - "MYSQL_ROOT_PASSWORD=secretsecret"
+      - "MYSQL_DATABASE=wordpress"
+      - "MYSQL_USER=wp"
+      - "MYSQL_PASSWORD=secret"
 
   wordpress:
     build: .
     depends_on:
-      - db
+      - "db"
     ports:
       - "80:80"
     environment:
-      DB_HOST: db
-      DB_NAME: wordpress
-      DB_USER: wp
-      DB_PASSWORD: secret
-      WORDPRESS_SITE_URL: https://localhost
+      - "DB_HOST=db"
+      - "DB_NAME=wordpress"
+      - "DB_USER=wp"
+      - "DB_PASSWORD=secret"
+      - "WORDPRESS_SITE_URL=https://localhost"
+    restart: always
