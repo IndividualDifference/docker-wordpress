@@ -49,6 +49,8 @@ RUN echo "## Installing base ##" && \
 
 EXPOSE 80
 
+#VOLUME /var/www/wp-content
+
 # Configure nginx
 ADD config/nginx.conf /etc/nginx/nginx.conf
 
