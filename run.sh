@@ -17,8 +17,5 @@ if [ ! "$(ls -A "/var/www/wp-content" 2>/dev/null)" ]; then
     curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 fi
 
-# this is a workaround cause depends_on doesn't always work
-sleep 60
-
 # execute CMD[]
 exec "$@"
