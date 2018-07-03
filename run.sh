@@ -18,7 +18,7 @@ if [ ! "$(ls -A "/var/www/wp-content" 2>/dev/null)" ]; then
 fi
 
 # this is a workaround cause depends_on doesn't always work
-sleep 5
+sleep 60
 
 # execute CMD[]
 exec "$@"
