@@ -1,8 +1,8 @@
 version: '3.1'
 services:
   db:
-    #image: thedifferent/mariadb
-    build: mariadb
+    image: thedifferent/mariadb
+    #build: mariadb
     environment:
       - "MYSQL_ROOT_PASSWORD=secretsecret"
       - "MYSQL_DATABASE=wordpress"
@@ -10,15 +10,15 @@ services:
       - "MYSQL_PASSWORD=secret"
 
   wordpress:
-    #image: thedifferent/wordpress
-    build: wordpress
+    image: thedifferent/wordpress
+    #build: wordpress
     depends_on:
       - "db"
     ports:
-      - "80:80"
+      - "443:80"
     environment:
       - "DB_HOST=db"
       - "DB_NAME=wordpress"
       - "DB_USER=wp"
       - "DB_PASSWORD=secret"
-      - "WORDPRESS_SITE_URL=http://localhost"
+      - "WORDPRESS_SITE_URL=https://thedifferent.at"
