@@ -18,7 +18,7 @@ services:
       - "80:80"
     environment:
       - "DB_HOST=db"
-      - "DB_NAME=wordpress"
-      - "DB_USER=wp"
+      - "DB_NAME=wp"
+      - "DB_USER=wordpress"
       - "DB_PASSWORD=secret"
-      - "WORDPRESS_SITE_URL=http://localhost"
+      - "WORDPRESS_SITE_URL=https://thedifferent.at"

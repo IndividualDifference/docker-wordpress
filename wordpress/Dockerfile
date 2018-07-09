@@ -5,8 +5,8 @@ LABEL description "Lightweight WordPress container with Nginx 1.12 & PHP-FPM 7.1
 MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
 
 # WordPress change here to desired version
-ENV WORDPRESS_VERSION 4.9.6
-ENV WORDPRESS_SHA1 40616b40d120c97205e5852c03096115c2fca537
+ENV WORDPRESS_VERSION 4.9.7
+ENV WORDPRESS_SHA1 7bf349133750618e388e7a447bc9cdc405967b7d
 
 WORKDIR /var/www/wp-content
 
