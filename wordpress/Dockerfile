@@ -2,6 +2,7 @@ FROM alpine:latest
 
 LABEL description "Lightweight WordPress container with Nginx 1.12 & PHP-FPM 7.1 based on Alpine Linux."
 
+# developed for TheDifferent by Florian Kleber for terms of use have a look at the LICENSE file
 MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
 
 # WordPress change here to desired version
@@ -18,24 +19,24 @@ RUN echo "## Installing base ##" && \
     \
     apk add --force \
     	bash \
-	curl \
+	    curl \
     	nginx \
-	supervisor \
+	    supervisor \
     	php7 \
-	php7-fpm \
-	php7-mysqli \
-	php7-json \
-	php7-openssl \
-	php7-curl \
-	php7-zlib \
-	php7-xml \
-	php7-phar \
-	php7-intl \
-	php7-dom \
-	php7-xmlreader \
-	php7-ctype \
-	php7-mbstring \
-	php7-gd \
+	    php7-fpm \
+	    php7-mysqli \
+	    php7-json \
+	    php7-openssl \
+	    php7-curl \
+	    php7-zlib \
+	    php7-xml \
+	    php7-phar \
+	    php7-intl \
+	    php7-dom \
+	    php7-xmlreader \
+	    php7-ctype \
+	    php7-mbstring \
+	    php7-gd \
         tini@community \
     \
     && chown -R nobody.nobody /var/www \
@@ -49,6 +50,7 @@ RUN echo "## Installing base ##" && \
 
 EXPOSE 80
 
+# disabled Volume cause it's not needed at the moment pls check notes before you consider changing
 #VOLUME /var/www/wp-content
 
 # Configure nginx
