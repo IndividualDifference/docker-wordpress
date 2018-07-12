@@ -2,6 +2,7 @@ FROM alpine:latest
 
 LABEL description "MariaDB is a full-featured open-source SQL server"
 
+# developed for TheDifferent by Florian Kleber for terms of use have a look at the LICENSE file
 MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
 
 # update, install and cleaning
@@ -11,10 +12,10 @@ RUN echo "## Installing base ##" && \
     apk upgrade --update-cache --available && \
     \
     apk add --force \
-    bash \
-    grep \
-    mariadb \
-    tini@community \
+        bash \
+        grep \
+        mariadb \
+        tini@community \
     \
     && mkdir -m 777 /var/lib/mysqld \
     && chown -R mysql:mysql /var/lib/mysql \
@@ -29,7 +30,7 @@ RUN echo "## Installing base ##" && \
 
 EXPOSE 3306/tcp
 
-# pls read my notes before enabling volumes
+# disabled Volume cause it's not needed at the moment pls check notes before you consider changing
 #VOLUME /var/lib/mysql
 
 # deploy init script
