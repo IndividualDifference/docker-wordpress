@@ -21,4 +21,4 @@ services:
       - "DB_NAME=wp"
       - "DB_USER=wordpress"
       - "DB_PASSWORD=secret"
-      - "WORDPRESS_SITE_URL=https://thedifferent.at"
+      - "WORDPRESS_SITE_URL=http://localhost"
