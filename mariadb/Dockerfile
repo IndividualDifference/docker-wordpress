@@ -33,6 +33,9 @@ EXPOSE 3306/tcp
 # disabled Volume cause it's not needed at the moment pls check notes before you consider changing
 #VOLUME /var/lib/mysql
 
+# add license
+ADD LICENSE /
+
 # deploy init script
 ADD run.sh /
 RUN chmod +x /run.sh

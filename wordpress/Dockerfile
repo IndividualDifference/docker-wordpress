@@ -53,23 +53,26 @@ EXPOSE 80
 # disabled Volume cause it's not needed at the moment pls check notes before you consider changing
 #VOLUME /var/www/wp-content
 
-# Configure nginx
+# configure nginx
 ADD config/nginx.conf /etc/nginx/nginx.conf
 
-# Configure PHP-FPM
+# configure PHP-FPM
 ADD config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
 ADD config/php.ini /etc/php7/conf.d/zzz_custom.ini
 
-# Configure supervisord
+# configure supervisord
 ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# WP config
+# wp config
 add config/wp-config.php /usr/src/wordpress
 RUN chown nobody.nobody /usr/src/wordpress/wp-config.php && chmod 640 /usr/src/wordpress/wp-config.php
 
-# Append WP secrets
+# append WP secrets
 ADD config/wp-secrets.php /usr/src/wordpress
 RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/wordpress/wp-secrets.php
+
+# add license
+ADD LICENSE /
 
 # deploy init script
 ADD run.sh /
