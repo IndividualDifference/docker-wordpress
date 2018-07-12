@@ -1,24 +1,48 @@
 version: '3.1'
+
 services:
   db:
     image: thedifferent/mariadb
     #build: mariadb
+    networks:
+      - "wp-net"
     environment:
-      - "MYSQL_ROOT_PASSWORD=secretsecret"
-      - "MYSQL_DATABASE=wordpress"
-      - "MYSQL_USER=wp"
-      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_DATABASE=wp"
+      - "MYSQL_USER=wordpress"
+      - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+
+    #resources:
+    #  limits:
+    #    cpus: '0.3'
+    #    memory: 512M
+    #  reservations:
+    #    cpus: '0.15'
+    #    memory: 256M
 
   wordpress:
     image: thedifferent/wordpress
     #build: wordpress
     depends_on:
       - "db"
+    networks:
+      - "wp-net"
     ports:
-      - "80:80"
+      - "${WP_PORT}:80"
     environment:
       - "DB_HOST=db"
       - "DB_NAME=wp"
       - "DB_USER=wordpress"
-      - "DB_PASSWORD=secret"
-      - "WORDPRESS_SITE_URL=https://thedifferent.at"
+      - "DB_PASSWORD=${MYSQL_PASSWORD}"
+      - "WORDPRESS_SITE_URL=${WP_SITE_URL}"
+    #resources:
+    #  limits:
+    #    cpus: '0.50'
+    #    memory: 1024M
+    #  reservations:
+    #    cpus: '0.25'
+    #    memory: 512M
+
+networks:
+  wp-net:
+    driver: overlay
