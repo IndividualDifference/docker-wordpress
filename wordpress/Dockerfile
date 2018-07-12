@@ -71,8 +71,11 @@ RUN chown nobody.nobody /usr/src/wordpress/wp-config.php && chmod 640 /usr/src/w
 ADD config/wp-secrets.php /usr/src/wordpress
 RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/wordpress/wp-secrets.php
 
-# Entrypoint to copy wp-content
-ADD run.sh /run.sh
-ENTRYPOINT ["/sbin/tini", "--", "/run.sh" ]
+# deploy init script
+ADD run.sh /
+RUN chmod +x /run.sh
+
+# starting via tini as init
+ENTRYPOINT ["/sbin/tini", "--", "/run.sh"]
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
