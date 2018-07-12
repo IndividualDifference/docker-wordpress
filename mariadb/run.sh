@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# developed for TheDifferent by Florian Kleber for terms of use have a look at the LICENSE file
+
 # terminate on errors
 set -xe
 
@@ -26,7 +28,8 @@ else
 		MYSQL_ROOT_PASSWORD=`pwgen 16 1`
 		echo "[i] MySQL root Password: $MYSQL_ROOT_PASSWORD"
 	fi
-
+	
+	# define as docker compose var or default
 	MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST:-"%"}
 	MYSQL_DATABASE=${MYSQL_DATABASE:-""}
 	MYSQL_USER=${MYSQL_USER:-""}
