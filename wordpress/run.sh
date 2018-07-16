@@ -13,7 +13,7 @@ if [ ! $(ls -A "/var/www/wp-content" 2>/dev/null) ]; then
     # check if BACKUP_URL exists by downloading the first byte
     if [ "curl --output /dev/null --silent --fail -r 0-0 '$BACKUP_URL'" ]; then
         # download backup from backup url
-        curl -sfL "$BACKUP_URL" | tar -zxC /var/www
+        wget -qO- "$BACKUP_URL" | tar zxC /var/www
     else
         # print info to cli
         echo 'Setting up wp-content directory'
@@ -22,7 +22,7 @@ if [ ! $(ls -A "/var/www/wp-content" 2>/dev/null) ]; then
         chown -R nobody:nobody /var/www
     fi
     # generate secrets
-    curl -sf https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
+    wget https://api.wordpress.org/secret-key/1.1/salt/ -O ->> /usr/src/wordpress/wp-secrets.php
 fi
 
 # execute CMD[]
