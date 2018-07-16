@@ -2,6 +2,18 @@
 
 Lightweight MariaDB, and WordPress container with Nginx 1.12 & PHP-FPM 7.1 based on Alpine Linux.
 
+WordPress:
+[![ImageOrigin](https://images.microbadger.com/badges/version/thedifferent/wordpress.svg)](https://microbadger.com/images/thedifferent/wordpress "Get your own version badge on microbadger.com")
+[![Docker Stars](https://img.shields.io/docker/stars/thedifferent/wordpress.svg)](https://hub.docker.com/r/thedifferent/wordpress/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thedifferent/wordpress.svg)](https://hub.docker.com/r/thedifferent/wordpress/)
+[![ImageLayers](https://images.microbadger.com/badges/image/thedifferent/wordpress.svg)](https://microbadger.com/#/images/thedifferent/wordpress)
+
+MariaDB:
+[![ImageOrigin](https://images.microbadger.com/badges/version/thedifferent/mariadb.svg)](https://microbadger.com/images/thedifferent/mariadb "Get your own version badge on microbadger.com")
+[![Docker Stars](https://img.shields.io/docker/stars/thedifferent/mariadb.svg)](https://hub.docker.com/r/thedifferent/mariadb/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thedifferent/mariadb.svg)](https://hub.docker.com/r/thedifferent/mariadb/)
+[![ImageLayers](https://images.microbadger.com/badges/image/thedifferent/mariadb.svg)](https://microbadger.com/#/images/thedifferent/mariadb)
+
 ## [](#header-2)Deploy via swarm
 
 ```bash
