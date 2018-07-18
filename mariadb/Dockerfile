@@ -13,7 +13,6 @@ RUN echo "## Installing base ##" && \
     \
     apk add --force \
         bash \
-        grep \
         mariadb \
         tini@community \
     \
