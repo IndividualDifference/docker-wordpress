@@ -6,12 +6,12 @@
 set -xe
 
 # define as docker compose var or default ""
-BACKUP_URL=${BACKUP_URL:-""}
+BACKUP_URL=${BACKUP_URL:-}
 
 # check if volume is not empty
-if [ ! $(ls -A "/var/www/wp-content" 2>/dev/null) ]; then
+if [[ ! $(ls -A "/var/www/wp-content" 2>/dev/null) ]]; then
     # check if BACKUP_URL exists by downloading the first byte
-    if [ "curl --output /dev/null --silent --fail -r 0-0 '$BACKUP_URL'" ]; then
+    if [[ $(wget -S --spider $1  2>&1 | grep 'HTTP/1.1 200 OK') ]]; then
         # download backup from backup url
         wget -qO- "$BACKUP_URL" | tar zxC /var/www
     else
