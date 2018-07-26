@@ -4,10 +4,12 @@ services:
     #image: thedifferent/mariadb
     build: mariadb
     environment:
-      - "MYSQL_ROOT_PASSWORD=secretsecret"
+      - "MYSQL_ROOT_HOST=localhost"
+      - "MYSQL_ROOT_PASSWORD=ciscocisco"
+      - "MYSQL_ROOT_PASSWORD_LOCAL=true"
       - "MYSQL_DATABASE=wordpress"
       - "MYSQL_USER=wp"
-      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_PASSWORD=cisco"
 
   wordpress:
     #image: thedifferent/wordpress
@@ -18,7 +20,7 @@ services:
       - "80:80"
     environment:
       - "DB_HOST=db"
-      - "DB_NAME=wp"
-      - "DB_USER=wordpress"
-      - "DB_PASSWORD=secret"
+      - "DB_NAME=wordpress"
+      - "DB_USER=wp"
+      - "DB_PASSWORD=cisco"
       - "WORDPRESS_SITE_URL=http://localhost"
