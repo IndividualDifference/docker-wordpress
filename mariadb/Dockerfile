@@ -7,13 +7,15 @@ MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
 
 # update, install and cleaning
 RUN echo "## Installing base ##" && \
+    echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/main/" >> /etc/apk/main && \
     echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
     apk upgrade --update-cache --available && \
     \
     apk add --force \
-        bash \
-        mariadb \
+        bash@main \
+        grep@main \
+        mariadb@main \
         tini@community \
     \
     && mkdir -m 777 /var/lib/mysqld \

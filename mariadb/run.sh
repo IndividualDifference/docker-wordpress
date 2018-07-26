@@ -28,8 +28,9 @@ else
 		MYSQL_ROOT_PASSWORD=`pwgen 16 1`
 		echo "[i] MySQL root Password: $MYSQL_ROOT_PASSWORD"
 	fi
-	
+
 	# define as docker compose var or default
+	MYSQL_ROOT_PASSWORD_LOCAL=${MYSQL_ROOT_PASSWORD_LOCAL:-"false"}
 	MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST:-"%"}
 	MYSQL_DATABASE=${MYSQL_DATABASE:-""}
 	MYSQL_USER=${MYSQL_USER:-""}
@@ -47,15 +48,31 @@ else
 		USE mysql;
 		FLUSH PRIVILEGES;
 		DELETE FROM mysql.user WHERE user NOT IN ('mysql.sys', 'mysqlxsys', 'root') OR host NOT IN ('localhost');
-		SET PASSWORD FOR 'root'@'localhost'=PASSWORD('${MYSQL_ROOT_PASSWORD}');
 		GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-		CREATE USER 'root'@'${MYSQL_ROOT_HOST}' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-		GRANT ALL ON *.* TO 'root'@'${MYSQL_ROOT_HOST}' WITH GRANT OPTION;
-		DROP DATABASE IF EXISTS test;
-		FLUSH PRIVILEGES;
 	EOSQL
 
-	if [ "$MYSQL_DATABASE" != "" ]; then
+	if [ "$MYSQL_ROOT_PASSWORD_LOCAL" == "true" ]; then
+		cat <<- EOSQL >> $tfile
+			SET PASSWORD FOR 'root'@'localhost'=PASSWORD('${MYSQL_ROOT_PASSWORD}');
+		EOSQL
+	fi
+
+	if [ "$MYSQL_ROOT_HOST" != "localhost" ]; then
+		cat <<- EOSQL >> $tfile
+			CREATE USER 'root'@'${MYSQL_ROOT_HOST}' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+			GRANT ALL ON *.* TO 'root'@'${MYSQL_ROOT_HOST}' WITH GRANT OPTION;
+			DROP DATABASE IF EXISTS test;
+			FLUSH PRIVILEGES;
+		EOSQL
+	fi
+
+	if [ "$MYSQL_DATABASE" == "*" ]; then
+		if [ "$MYSQL_USER" != "" ]; then
+		echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
+		echo "GRANT ALL ON *.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
+		fi
+
+	elif [ "$MYSQL_DATABASE" != "" ]; then
 	    echo "[i] Creating database: $MYSQL_DATABASE"
 	    echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
 
