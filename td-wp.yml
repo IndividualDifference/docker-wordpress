@@ -7,11 +7,12 @@ services:
     networks:
       - "wp-net"
     environment:
+      - "MYSQL_ROOT_HOST=localhost"
+      - "MYSQL_ROOT_PASSWORD_LOCAL=true"
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
       - "MYSQL_DATABASE=wp"
       - "MYSQL_USER=wordpress"
       - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
-
     #resources:
     #  limits:
     #    cpus: '0.3'
