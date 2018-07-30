@@ -9,10 +9,10 @@ Lightweight MariaDB, and WordPress container with Nginx 1.12 & PHP-FPM 7.1 based
 [![ImageLayers](https://images.microbadger.com/badges/image/thedifferent/mariadb.svg)](https://microbadger.com/#/images/thedifferent/mariadb)
 
 **WordPress:**
-[![ImageOrigin](https://images.microbadger.com/badges/version/thedifferent/wordpress.svg)](https://microbadger.com/images/thedifferent/wordpress "Get your own version badge on microbadger.com")
-[![Docker Stars](https://img.shields.io/docker/stars/thedifferent/wordpress.svg)](https://hub.docker.com/r/thedifferent/wordpress/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/thedifferent/wordpress.svg)](https://hub.docker.com/r/thedifferent/wordpress/)
-[![ImageLayers](https://images.microbadger.com/badges/image/thedifferent/wordpress.svg)](https://microbadger.com/#/images/thedifferent/wordpress)
+[![ImageOrigin](https://images.microbadger.com/badges/version/thedifferent/wordpress-alpine.svg)](https://microbadger.com/images/thedifferent/wordpress-alpine "Get your own version badge on microbadger.com")
+[![Docker Stars](https://img.shields.io/docker/stars/thedifferent/wordpress-alpine.svg)](https://hub.docker.com/r/thedifferent/wordpress-alpine/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thedifferent/wordpress-alpine.svg)](https://hub.docker.com/r/thedifferent/wordpress-alpine/)
+[![ImageLayers](https://images.microbadger.com/badges/image/thedifferent/wordpress-alpine.svg)](https://microbadger.com/#/images/thedifferent/wordpress-alpine)
 
 ### [](#header-2)About us:
 
@@ -57,7 +57,7 @@ This environment variable sets the user password for MYSQL_USER. The default is 
 version: '3.1'
 services:
   db:
-    build: mariadb
+    image: thedifferent/mariadb
     environment:
       - "MYSQL_ROOT_HOST=localhost"
       - "MYSQL_ROOT_PASSWORD=ciscocisco"
@@ -67,7 +67,7 @@ services:
       - "MYSQL_PASSWORD=cisco"
 
   wordpress:
-    build: wordpress
+    image: thedifferent/wordpress-alpine
     depends_on:
       - "db"
     ports:
@@ -97,7 +97,7 @@ services:
       - "MYSQL_PASSWORD=cisco"
 
   wordpress:
-    #image: thedifferent/wordpress
+    #image: thedifferent/wordpress-alpine
     build: wordpress
     depends_on:
       - "db"
@@ -139,7 +139,7 @@ services:
     #    memory: 256M
 
   wordpress:
-    image: thedifferent/wordpress
+    image: thedifferent/wordpress-alpine
     #build: wordpress
     depends_on:
       - "db"

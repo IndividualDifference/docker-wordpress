@@ -22,7 +22,7 @@ services:
     #    memory: 256M
 
   wordpress:
-    image: thedifferent/wordpress
+    image: thedifferent/wordpress-alpine
     #build: wordpress
     depends_on:
       - "db"

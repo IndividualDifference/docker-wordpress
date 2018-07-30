@@ -12,7 +12,7 @@ services:
       - "MYSQL_PASSWORD=cisco"
 
   wordpress:
-    #image: thedifferent/wordpress
+    #image: thedifferent/wordpress-alpine
     build: wordpress
     depends_on:
       - "db"
