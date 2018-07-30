@@ -6,14 +6,14 @@
 set -xe
 
 # define as docker compose var or default ""
-BACKUP_URL=${BACKUP_URL:-}
+WP_BACKUP_URL=${WP_BACKUP_URL:-}
 
 # check if volume is not empty
 if [[ ! $(ls -A "/var/www/wp-content" 2>/dev/null) ]]; then
     # check if BACKUP_URL exists by downloading the first byte
     if [[ $(wget -S --spider $1  2>&1 | grep 'HTTP/1.1 200 OK') ]]; then
         # download backup from backup url
-        wget -qO- "$BACKUP_URL" | tar zxC /var/www
+        wget -qO- "$WP_BACKUP_URL" | tar zxC /var/www
     else
         # print info to cli
         echo 'Setting up wp-content directory'
