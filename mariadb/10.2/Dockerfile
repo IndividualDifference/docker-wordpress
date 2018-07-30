@@ -39,7 +39,6 @@ ADD LICENSE /
 
 # deploy init script
 ADD run.sh /
-RUN chmod +x /run.sh
 
 # starting via tini as init
 ENTRYPOINT ["/sbin/tini", "--", "/run.sh"]

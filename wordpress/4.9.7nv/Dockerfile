@@ -75,7 +75,7 @@ RUN echo "## Installing base ##" && \
 
 EXPOSE 80
 
-# disabled Volume cause it's not needed at the moment pls check notes before you consider changing
+# version w/ volume disabled
 #VOLUME /var/www/wp-content
 
 # add license
