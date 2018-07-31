@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-LABEL description "Lightweight WordPress container with Nginx 1.12 & PHP-FPM 7.1 based on Alpine Linux."
+LABEL description "Lightweight WordPress container with Nginx & PHP-FPM based on Alpine Linux."
 
 # developed for TheDifferent by Florian Kleber for terms of use have a look at the LICENSE file
 MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
@@ -17,7 +17,7 @@ WORKDIR /var/www/wp-content
 
 # update, install and cleaning
 RUN echo "## Installing base ##" && \
-    echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/main/" >> /etc/apk/main && \
+    echo "@main http://dl-cdn.alpinelinux.org/alpine/edge/main/" >> /etc/apk/main && \
     echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
     apk upgrade --update-cache --available && \
@@ -25,21 +25,21 @@ RUN echo "## Installing base ##" && \
     apk add --force \
         bash@main \
         nginx@main \
-        php7@main \
-        php7-fpm@main \
-        php7-mysqli@main \
-        php7-json@main \
-        php7-openssl@main \
-        php7-curl@main \
-        php7-zlib@main \
-        php7-xml@main \
-        php7-phar@main \
-        php7-intl@main \
-        php7-dom@main \
-        php7-xmlreader@main \
-        php7-ctype@main \
-        php7-mbstring@main \
-        php7-gd@main \
+        php7@community \
+        php7-fpm@community \
+        php7-mysqli@community \
+        php7-json@community \
+        php7-openssl@community \
+        php7-curl@community \
+        php7-zlib@community \
+        php7-xml@community \
+        php7-phar@community \
+        php7-intl@community \
+        php7-dom@community \
+        php7-xmlreader@community \
+        php7-ctype@community \
+        php7-mbstring@community \
+        php7-gd@community \
         supervisor@main \
         tini@community \
     \

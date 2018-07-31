@@ -7,7 +7,7 @@ MAINTAINER Florian Kleber <kleberbaum@erebos.xyz>
 
 # update, install and cleaning
 RUN echo "## Installing base ##" && \
-    echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/main/" >> /etc/apk/main && \
+    echo "@main http://dl-cdn.alpinelinux.org/alpine/edge/main/" >> /etc/apk/main && \
     echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
     apk upgrade --update-cache --available && \
@@ -31,7 +31,7 @@ RUN echo "## Installing base ##" && \
 
 EXPOSE 3306/tcp
 
-# disabled Volume version
+# version w/ volume disabled
 #VOLUME /var/lib/mysql
 
 # add license
