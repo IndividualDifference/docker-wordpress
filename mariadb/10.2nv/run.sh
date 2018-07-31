@@ -38,7 +38,7 @@ else
 
 	tfile=`mktemp`
 	if [ ! -f "$tfile" ]; then
-	    return 1
+		return 1
 	fi
 
 	cat <<- EOSQL > $tfile
@@ -73,13 +73,13 @@ else
 		fi
 
 	elif [ "$MYSQL_DATABASE" != "" ]; then
-	    echo "[i] Creating database: $MYSQL_DATABASE"
-	    echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
+		echo "[i] Creating database: $MYSQL_DATABASE"
+		echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
 
-	    if [ "$MYSQL_USER" != "" ]; then
+		if [ "$MYSQL_USER" != "" ]; then
 		echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
 		echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
-	    fi
+		fi
 	fi
 
 	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 < $tfile
