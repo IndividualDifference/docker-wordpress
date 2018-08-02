@@ -5,7 +5,8 @@ services:
     image: thedifferent/mariadb:novolume
     #build: mariadb
     networks:
-      - "wp-net"
+      - "local"
+      - "dbgui"
     environment:
       - "MYSQL_ROOT_HOST=localhost"
       - "MYSQL_ROOT_PASSWORD_LOCAL=true"
@@ -27,7 +28,8 @@ services:
     depends_on:
       - "db"
     networks:
-      - "wp-net"
+      - "local"
+      - "rvproxy"
     ports:
       - "${WP_PORT}:80"
     environment:
@@ -45,5 +47,13 @@ services:
     #    memory: 512M
 
 networks:
-  wp-net:
+  local:
     driver: overlay
+
+  dbgui:
+    external:
+      name: adminer-net
+
+  rvproxy:
+    external:
+      name: traefik-net
