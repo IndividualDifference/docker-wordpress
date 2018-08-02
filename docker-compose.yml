@@ -2,7 +2,7 @@ version: '3.1'
 services:
   db:
     #image: thedifferent/mariadb
-    build: mariadb
+    build: mariadb/wclient
     environment:
       - "MYSQL_ROOT_HOST=localhost"
       - "MYSQL_ROOT_PASSWORD=ciscocisco"
@@ -13,7 +13,7 @@ services:
 
   wordpress:
     #image: thedifferent/wordpress-alpine
-    build: wordpress
+    build: wordpress/latest
     depends_on:
       - "db"
     ports:
