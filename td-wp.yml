@@ -8,7 +8,7 @@ services:
       - "local"
       - "dbgui"
     environment:
-      - "MYSQL_ROOT_HOST=localhost"
+      - "MYSQL_ROOT_HOST=%"
       - "MYSQL_ROOT_PASSWORD_LOCAL=true"
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
       - "MYSQL_DATABASE=wp"
