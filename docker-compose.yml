@@ -13,7 +13,7 @@ services:
 
   wordpress:
     #image: thedifferent/wordpress-alpine
-    build: wordpress/latest
+    build: wordpress/novolume
     depends_on:
       - "db"
     ports:
