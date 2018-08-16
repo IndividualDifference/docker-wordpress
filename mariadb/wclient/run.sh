@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # developed for TheDifferent by Florian Kleber for terms of use have a look at the LICENSE file
 
@@ -7,20 +7,20 @@ set -xe
 
 if [ -d "/run/mysqld" ]; then
 	echo "[i] mysqld already present, skipping creation"
-	chown -R mysql:mysql /run/mysqld
 else
 	echo "[i] mysqld not found, creating...."
 	mkdir -p /run/mysqld
-	chown -R mysql:mysql /run/mysqld
 fi
+
+# define owner
+chown -R mysql:mysql /run/mysqld
+chown -R mysql:mysql /var/lib/mysql
 
 if [ -d /var/lib/mysql/mysql ]; then
 	echo "[i] MySQL directory already present, skipping creation"
-	chown -R mysql:mysql /var/lib/mysql
+
 else
 	echo "[i] MySQL data directory not found, creating initial DBs"
-
-	chown -R mysql:mysql /var/lib/mysql
 
 	mysql_install_db --user=mysql > /dev/null
 
@@ -68,8 +68,8 @@ else
 
 	if [ "$MYSQL_DATABASE" == "*" ]; then
 		if [ "$MYSQL_USER" != "" ]; then
-		echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
-		echo "GRANT ALL ON *.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
+			echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
+			echo "GRANT ALL ON *.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
 		fi
 
 	elif [ "$MYSQL_DATABASE" != "" ]; then
@@ -77,8 +77,8 @@ else
 		echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
 
 		if [ "$MYSQL_USER" != "" ]; then
-		echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
-		echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
+			echo "[i] Creating user: $MYSQL_USER with password $MYSQL_PASSWORD"
+			echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
 		fi
 	fi
 
