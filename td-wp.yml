@@ -2,11 +2,13 @@ version: '3.1'
 
 services:
   db:
-    image: thedifferent/mariadb:novolume
+    image: thedifferent/mariadb:latest
     #build: mariadb
     networks:
       - "local"
       - "dbgui"
+    volumes:
+      - "db-data:/var/lib/mysql"
     environment:
       - "MYSQL_ROOT_HOST=%"
       - "MYSQL_ROOT_PASSWORD_LOCAL=true"
@@ -23,7 +25,7 @@ services:
     #    memory: 256M
 
   wordpress:
-    image: thedifferent/wordpress-alpine:novolume
+    image: thedifferent/wordpress-alpine:gina
     #build: wordpress
     depends_on:
       - "db"
@@ -38,6 +40,11 @@ services:
       - "DB_USER=wordpress"
       - "DB_PASSWORD=${MYSQL_PASSWORD}"
       - "WORDPRESS_SITE_URL=${WP_SITE_URL}"
+      - "WP_BACKUP_URL=${WP_BACKUP_URL}"
+      - "WP_BACKUP_GIT_REPO=${WP_BACKUP_GIT_REPO}"
+      - "WP_BACKUP_GIT_USER=${WP_BACKUP_GIT_USER}"
+      - "WP_BACKUP_GIT_PASSWD=${WP_BACKUP_GIT_PASSWD}"
+      - "WP_BACKUP_INTERVAL=${WP_BACKUP_INTERVAL}"
     #resources:
     #  limits:
     #    cpus: '0.50'
@@ -57,3 +64,7 @@ networks:
   rvproxy:
     external:
       name: traefik-net
+
+volumes:
+  db-data:
+    driver: local
