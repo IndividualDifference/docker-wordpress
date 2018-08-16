@@ -1,2 +1,5 @@
 # password file
 .env
+
+# compose file
+docker-compose.yml
