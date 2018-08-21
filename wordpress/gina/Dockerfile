@@ -11,7 +11,7 @@ ARG WORDPRESS_SHA1=0945bab959cba127531dceb2c4fed81770812b4f
 
 # Config change here to desired config backup
 ARG CONFIG_URL=https://github.com/IndividualDifference/docker-wordpress/releases/download/1.0/config.tar.gz
-ARG CONFIG_SHA1=2fda6cf79b0d6920053d76be5fe10e030f9b2663
+ARG CONFIG_SHA1=ac54253b369f0e7e67b8fe5bf47e33a8f00c710f
 
 WORKDIR /var/www/wp-content
 
