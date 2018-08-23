@@ -2,11 +2,11 @@ version: '3.1'
 services:
   db:
     #image: thedifferent/mariadb
-    build: mariadb/wclient
+    build: mariadb/gina
     environment:
       - "MYSQL_ROOT_HOST=localhost"
       - "MYSQL_ROOT_PASSWORD=ciscocisco"
-      - "MYSQL_ROOT_PASSWORD_LOCAL=true"
+      - "MYSQL_ROOT_PASSWORD_LOCAL=false"
       - "MYSQL_DATABASE=wordpress"
       - "MYSQL_USER=wp"
       - "MYSQL_PASSWORD=cisco"

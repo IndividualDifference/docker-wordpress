@@ -86,5 +86,21 @@ else
 	rm -f $tfile
 fi
 
+# define as docker compose var or default ""
+WP_BACKUP_GIT_REPO=${WP_BACKUP_GIT_REPO:-""}
+WP_BACKUP_GIT_USER=${WP_BACKUP_GIT_USER:-""}
+WP_BACKUP_GIT_PASSWD=${WP_BACKUP_GIT_PASSWD:-""}
+WP_BACKUP_INTERVAL=${WP_BACKUP_INTERVAL:-""}
+
+# check if git repo is set
+if [[ $WP_BACKUP_GIT_REPO ]]; then
+	# GINAvbs backup solution
+	wget -qO- https://raw.githubusercontent.com/kleberbaum/GINAvbs/master/init.sh \
+	| bash -s -- \
+	--sql \
+	--interval=$WP_BACKUP_INTERVAL \
+	--repository=https://$WP_BACKUP_GIT_USER:$WP_BACKUP_GIT_PASSWD@${WP_BACKUP_GIT_REPO#*@}
+fi
+
 # execute CMD[]
 exec "$@"
