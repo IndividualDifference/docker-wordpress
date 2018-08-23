@@ -82,9 +82,9 @@ EXPOSE 80
 ADD LICENSE /
 
 # deploy init script
-ADD run.sh /
+ADD docker-entrypoint.sh /
 
 # starting via tini as init
-ENTRYPOINT ["/sbin/tini", "--", "/run.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
 
 CMD ["/usr/bin/supervisord"]
