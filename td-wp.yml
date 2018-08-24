@@ -20,13 +20,13 @@ services:
       - "DB_GINA_GIT_USER=${GINA_GIT_USER}"
       - "DB_GINA_GIT_PASSWD=${GINA_GIT_PASSWD}"
       - "DB_GINA_INTERVAL=${GINA_INTERVAL}"
-    resources:
-      limits:
-        cpus: '0.30'
-        memory: 512M
-      reservations:
-        cpus: '0.15'
-        memory: 256M
+    #resources:
+    #  limits:
+    #    cpus: '0.30'
+    #    memory: 512M
+    #  reservations:
+    #    cpus: '0.15'
+    #    memory: 256M
 
   wordpress:
     image: thedifferent/wordpress-alpine:gina
@@ -49,13 +49,13 @@ services:
       - "WP_GINA_GIT_USER=${GINA_GIT_USER}"
       - "WP_GINA_GIT_PASSWD=${GINA_GIT_PASSWD}"
       - "WP_GINA_INTERVAL=${GINA_INTERVAL}"
-    resources:
-      limits:
-        cpus: '0.50'
-        memory: 2048M
-      reservations:
-        cpus: '0.30'
-        memory: 768M
+    #resources:
+    #  limits:
+    #    cpus: '0.50'
+    #    memory: 2048M
+    #  reservations:
+    #    cpus: '0.30'
+    #    memory: 768M
 
 networks:
   local:
