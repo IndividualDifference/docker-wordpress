@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   db:
-    image: thedifferent/mariadb:latest
+    image: thedifferent/mariadb:gina
     #build: mariadb
     networks:
       - "local"
@@ -16,6 +16,10 @@ services:
       - "MYSQL_DATABASE=wp"
       - "MYSQL_USER=wordpress"
       - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+      - "WP_GINA_GIT_REPO=${GINA_GIT_REPO}"
+      - "DB_GINA_GIT_USER=${GINA_GIT_USER}"
+      - "DB_GINA_GIT_PASSWD=${GINA_GIT_PASSWD}"
+      - "DB_GINA_INTERVAL=${GINA_INTERVAL}"
     #resources:
     #  limits:
     #    cpus: '0.3'
@@ -41,10 +45,11 @@ services:
       - "DB_PASSWORD=${MYSQL_PASSWORD}"
       - "WORDPRESS_SITE_URL=${WP_SITE_URL}"
       - "WP_BACKUP_URL=${WP_BACKUP_URL}"
-      - "WP_BACKUP_GIT_REPO=${WP_BACKUP_GIT_REPO}"
-      - "WP_BACKUP_GIT_USER=${WP_BACKUP_GIT_USER}"
-      - "WP_BACKUP_GIT_PASSWD=${WP_BACKUP_GIT_PASSWD}"
-      - "WP_BACKUP_INTERVAL=${WP_BACKUP_INTERVAL}"
+      - "WP_GINA_GIT_REPO=${GINA_GIT_REPO}"
+      - "WP_GINA_GIT_USER=${GINA_GIT_USER}"
+      - "WP_GINA_GIT_PASSWD=${GINA_GIT_PASSWD}"
+      - "WP_GINA_INTERVAL=${GINA_INTERVAL}"
+
     #resources:
     #  limits:
     #    cpus: '0.50'

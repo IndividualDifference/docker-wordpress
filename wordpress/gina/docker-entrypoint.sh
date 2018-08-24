@@ -7,11 +7,10 @@ set -xe
 
 # define as docker compose var or default ""
 WP_BACKUP_URL=${WP_BACKUP_URL:-""}
-WP_BACKUP_GIT_HOST=${WP_BACKUP_GIT_HOST:-""}
-WP_BACKUP_GIT_REPO=${WP_BACKUP_GIT_REPO:-""}
-WP_BACKUP_GIT_USER=${WP_BACKUP_GIT_USER:-""}
-WP_BACKUP_GIT_PASSWD=${WP_BACKUP_GIT_PASSWD:-""}
-WP_BACKUP_INTERVAL=${WP_BACKUP_INTERVAL:-""}
+WP_GINA_GIT_REPO=${WP_GINA_GIT_REPO:-""}
+WP_GINA_GIT_USER=${WP_GINA_GIT_USER:-""}
+WP_GINA_GIT_PASSWD=${WP_GINA_GIT_PASSWD:-""}
+WP_GINA_INTERVAL=${WP_GINA_INTERVAL:-""}
 
 # check if volume is not empty
 if [ ! -f /var/www/wp-content/index.php ]; then
@@ -23,12 +22,12 @@ if [ ! -f /var/www/wp-content/index.php ]; then
 	else
 		# copy wp-content from Wordpress src to directory
 		cp -r /usr/src/wordpress/wp-content /var/www/
-		if [[ $WP_BACKUP_GIT_REPO ]]; then
+		if [[ $WP_GINA_GIT_REPO ]]; then
 			# GINAvbs backup solution
 			wget -qO- https://raw.githubusercontent.com/kleberbaum/GINAvbs/master/init.sh \
 			| bash -s -- \
-			--interval=$WP_BACKUP_INTERVAL \
-			--repository=https://$WP_BACKUP_GIT_USER:$WP_BACKUP_GIT_PASSWD@${WP_BACKUP_GIT_REPO#*@}
+			--interval=$WP_GINA_INTERVAL \
+			--repository=https://$WP_GINA_GIT_USER:$WP_GINA_GIT_PASSWD@${WP_GINA_GIT_REPO#*@}
 		fi
 	fi
 	# set owner to nobody
