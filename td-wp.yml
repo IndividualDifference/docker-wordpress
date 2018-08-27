@@ -49,6 +49,14 @@ services:
       - "WP_GINA_GIT_USER=${GINA_GIT_USER}"
       - "WP_GINA_GIT_PASSWD=${GINA_GIT_PASSWD}"
       - "WP_GINA_INTERVAL=${GINA_INTERVAL}"
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.frontend.rule=Host:${TRAEFIK_FR_Host}"
+        - "traefik.backend=${DOCKERCLOUD_CONTAINER_HOSTNAME}"
     #resources:
     #  limits:
     #    cpus: '0.50'
