@@ -22,9 +22,9 @@ services:
       - "DB_GINA_INTERVAL=${GINA_INTERVAL}"
     deploy:
       resources:
-        limits:
-          cpus: '0.30'
-          memory: 512M
+        #limits:
+        #  cpus: '0.30'
+        #  memory: 512M
         reservations:
           cpus: '0.15'
           memory: 256M
@@ -56,9 +56,9 @@ services:
         - "traefik.frontend.rule=Host:${TRAEFIK_FR_Host}"
         - "traefik.backend=${DOCKERCLOUD_CONTAINER_HOSTNAME}"
       resources:
-        limits:
-          cpus: '0.50'
-          memory: 2048M
+        #limits:
+        #  cpus: '0.50'
+        #  memory: 2048M
         reservations:
           cpus: '0.30'
           memory: 768M
