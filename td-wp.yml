@@ -23,10 +23,10 @@ services:
     deploy:
       resources:
         #limits:
-        #  cpus: '0.30'
+        #  cpus: '0.20'
         #  memory: 512M
         reservations:
-          cpus: '0.15'
+          cpus: '0.10'
           memory: 256M
 
   wordpress:
@@ -57,11 +57,11 @@ services:
         - "traefik.backend=${DOCKERCLOUD_CONTAINER_HOSTNAME}"
       resources:
         #limits:
-        #  cpus: '0.50'
+        #  cpus: '0.40'
         #  memory: 2048M
         reservations:
-          cpus: '0.30'
-          memory: 768M
+          cpus: '0.20'
+          memory: 500M
 
 networks:
   local:
